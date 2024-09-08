@@ -13,13 +13,13 @@ class QuestionsModule {
     )
   }
 
-  async showPointsDistributionMessage() {
+  async showPointsDistributionMessage(points) {
     return await inquirer.prompt(
       [
         {
           type: 'confirm',
           name: 'confirmation',
-          message: 'You have 20 points to distribute among the following attributes: speed, strength and defense. Choose wisely!',
+          message: `You have ${points} points to distribute among the following attributes: speed, strength and defense. Choose wisely!`,
         },
       ],
     )
