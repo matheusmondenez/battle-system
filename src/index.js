@@ -1,4 +1,5 @@
 import QuestionsModule from './modules/QuestionsModule.js'
+import BattleModule from './modules/BattleModule.js'
 
 const INITIAL_POINTS = 20
 
@@ -12,11 +13,23 @@ async function start() {
 
     checkAttributesPoints({speed, strength, defense})
 
+    const player = {
+      name,
+      isPlayer: true,
+      life: 50,
+      speed,
+      strength,
+      defense,
+    }
+
     console.info(`Hello, ${name}! You are in the battle!`)
 
     const enemy = createRandomEnemy()
 
     console.info(`You are facing a ${enemy.name} with speed ${enemy.speed}, strength ${enemy.strength} and defense ${enemy.defense}`)
+
+    const battle = new BattleModule()
+    battle.start(player, enemy)
   } catch (error) {
     console.error(error.message)
   }
@@ -37,6 +50,8 @@ function createRandomEnemy(points = INITIAL_POINTS) {
 
   return {
     name: 'Troll',
+    isPlayer: false,
+    life: 50,
     speed,
     strength,
     defense,
