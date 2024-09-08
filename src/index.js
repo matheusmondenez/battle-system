@@ -1,43 +1,27 @@
-import inquirer from 'inquirer'
+import QuestionsModule from './modules/QuestionsModule.js'
 
-const questions = [
-  {
-    type: 'input',
-    name: 'name',
-    message: "What's your name?",
-  },
-  {
-    type: 'confirm',
-    name: 'confirmation',
-    message: 'You have 20 points to distribute among the following attributes: speed, strength and defense. Choose wisely!'
-  },
-  {
-    type: 'number',
-    name: 'speed',
-    message: 'What is your speed?'
-  },
-  {
-    type: 'number',
-    name: 'strength',
-    message: 'What is your strength?'
-  },
-  {
-    type: 'number',
-    name: 'defense',
-    message: 'What is your defense?'
-  },
-]
+async function start() {
+  const questions = new QuestionsModule()
 
-inquirer.prompt(questions)
-  .then(({name, speed, strength, defense}) => {
+  try {
+    const { name } = await questions.askName()
+    const { confirmation } = await questions.showPointsDistributionMessage()
+    const { speed, strength, defense } = await questions.askAttributesPoints()
 
-    if (speed + strength + defense !== 20) {
-      throw new Error('Incorrect sum of values!')
-    }
+    checkAttributesPoints({speed, strength, defense})
 
-    console.info(`Hello, ${name}! You are in the battle!`)
-    console.info(`Speed: ${speed}`)
-    console.info(`Strength: ${strength}`)
-    console.info(`Defense: ${defense}`)
-  })
-  .catch(error => console.error(`Something went wrong: ${error.message}`))
+    console.log(`Hello, ${name}! You are in the battle!`)
+  } catch (error) {
+    console.error(error.message)
+  }
+}
+
+function checkAttributesPoints(attributes) {
+  const { speed, strength, defense } = attributes
+
+  if (speed + strength + defense !== 20) {
+    throw new Error('The sum of attributes must be 20!')
+  }
+}
+
+(() => start())()
