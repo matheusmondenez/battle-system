@@ -12,7 +12,11 @@ async function start() {
 
     checkAttributesPoints({speed, strength, defense})
 
-    console.log(`Hello, ${name}! You are in the battle!`)
+    console.info(`Hello, ${name}! You are in the battle!`)
+
+    const enemy = createRandomEnemy()
+
+    console.info(`You are facing a ${enemy.name} with speed ${enemy.speed}, strength ${enemy.strength} and defense ${enemy.defense}`)
   } catch (error) {
     console.error(error.message)
   }
@@ -23,6 +27,19 @@ function checkAttributesPoints(attributes, points = INITIAL_POINTS) {
 
   if (speed + strength + defense !== 20) {
     throw new Error(`The sum of attributes must be ${points}!`)
+  }
+}
+
+function createRandomEnemy(points = INITIAL_POINTS) {
+  const speed = Math.floor(Math.random() * (points + 1))
+  const strength = Math.floor(Math.random() * (points - speed + 1))
+  const defense = points - speed - strength
+
+  return {
+    name: 'Troll',
+    speed,
+    strength,
+    defense,
   }
 }
 
