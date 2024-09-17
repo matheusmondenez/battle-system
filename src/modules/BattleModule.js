@@ -26,10 +26,15 @@ class BattleModule {
       if (turn % 2 !== 0) {
         console.info('--------------------------------------------')
         console.info(`Turn ${turn}: ${firstAttacker.name} attacks!`)
+
         const damage = this.calculateDamage(firstAttacker, secondAttacker)
+
         console.info(`Damage: ${damage}`)
+
         secondAttacker.life -= damage
+
         console.info(`${secondAttacker.name} has ${secondAttacker.life} life left`)
+
         const next = this.checkLife(secondAttacker)
 
         if (next) {
@@ -41,10 +46,15 @@ class BattleModule {
       } else {
         console.info('--------------------------------------------')
         console.info(`Turn ${turn}: ${secondAttacker.name} attacks!`)
+
         const damage = this.calculateDamage(secondAttacker, firstAttacker)
+
         console.info(`Damage: ${damage}`)
+
         firstAttacker.life -= damage
+
         console.info(`${firstAttacker.name} has ${firstAttacker.life} life left`)
+        
         const next = this.checkLife(firstAttacker)
 
         if (next) {
