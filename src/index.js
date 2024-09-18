@@ -13,23 +13,30 @@ async function start() {
 
     checkAttributesPoints({speed, strength, defense})
 
-    const player = {
-      name,
-      isPlayer: true,
-      life: 50,
-      speed,
-      strength,
-      defense,
+    const { mode } = await questions.chooseMode()
+
+    if (mode === 'auto') {
+      // Auto Battle
+      const player = {
+        name,
+        isPlayer: true,
+        life: 50,
+        speed,
+        strength,
+        defense,
+      }
+
+      console.info(`Hello, ${name}! You are in the battle!`)
+
+      const enemy = createRandomEnemy()
+
+      console.info(`You are facing a ${enemy.name} with speed ${enemy.speed}, strength ${enemy.strength} and defense ${enemy.defense}`)
+
+      const battle = new BattleModule()
+      battle.start(player, enemy)
+    } else {
+      // Interactive Battle
     }
-
-    console.info(`Hello, ${name}! You are in the battle!`)
-
-    const enemy = createRandomEnemy()
-
-    console.info(`You are facing a ${enemy.name} with speed ${enemy.speed}, strength ${enemy.strength} and defense ${enemy.defense}`)
-
-    const battle = new BattleModule()
-    battle.start(player, enemy)
   } catch (error) {
     console.error(error.message)
   }

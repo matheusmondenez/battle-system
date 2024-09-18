@@ -1,6 +1,30 @@
 import inquirer from 'inquirer'
 
 class QuestionsModule {
+  async chooseMode() {
+    return await inquirer.prompt(
+      [
+        {
+          type: 'select',
+          name: 'mode',
+          message: 'Choose a battle mode:',
+          choices: [
+            {
+              name: 'Auto',
+              value: 'auto',
+              description: 'Your battle will occur automatically.',
+            },
+            {
+              name: 'Interactive',
+              value: 'interactive',
+              description: 'You will choose your actionsduring the battle.',
+            },
+          ],
+        },
+      ],
+    )
+  }
+
   async askName() {
     return await inquirer.prompt(
       [
