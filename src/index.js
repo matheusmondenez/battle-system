@@ -31,8 +31,8 @@ async function start() {
     if (mode === 'auto') {
       // Auto Battle
       const battle = new BattleModule()
-      
-      battle.start(player, enemy)
+
+      battle.startAuto(player, enemy)
     } else {
       // Interactive Battle
     }

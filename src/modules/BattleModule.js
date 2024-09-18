@@ -1,5 +1,5 @@
 class BattleModule {
-  start(player, enemy) {
+  startAuto(player, enemy) {
     this.checkCombat(player, enemy)
 
     const [ firstAttacker, secondAttacker ] = this.determineFirstAndSecond(player, enemy)
