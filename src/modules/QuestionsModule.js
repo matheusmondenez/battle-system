@@ -71,6 +71,28 @@ class QuestionsModule {
       ],
     )
   }
+
+  async chooseAction() {
+    return await inquirer.prompt(
+      [
+        {
+          type: 'select',
+          name: 'action',
+          message: 'What will you do?',
+          choices: [
+            {
+              name: 'Attack',
+              value: 'attack',
+            },
+            {
+              name: 'Defend',
+              value: 'defend',
+            },
+          ],
+        },
+      ],
+    )
+  }
 }
 
 export default QuestionsModule

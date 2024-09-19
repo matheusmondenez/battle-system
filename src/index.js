@@ -28,13 +28,14 @@ async function start() {
     console.info(`Hello, ${name}! You are in the battle!`)
     console.info(`You are facing a ${enemy.name} with speed ${enemy.speed}, strength ${enemy.strength} and defense ${enemy.defense}`)
 
+    const battle = new BattleModule()
+
     if (mode === 'auto') {
       // Auto Battle
-      const battle = new BattleModule()
-
       battle.startAuto(player, enemy)
     } else {
       // Interactive Battle
+      battle.startInteractive(player, enemy)
     }
   } catch (error) {
     console.error(error.message)

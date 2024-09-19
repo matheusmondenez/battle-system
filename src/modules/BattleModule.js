@@ -1,3 +1,5 @@
+import QuestionsModule from './QuestionsModule.js'
+
 class BattleModule {
   startAuto(player, enemy) {
     this.checkCombat(player, enemy)
@@ -79,6 +81,11 @@ class BattleModule {
     }
 
     return false
+  }
+
+  async startInteractive(player, enemy) {
+    const questions = new QuestionsModule()
+    const action = await questions.chooseAction()
   }
 }
 
