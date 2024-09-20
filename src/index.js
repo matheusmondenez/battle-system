@@ -1,5 +1,6 @@
 import QuestionsModule from './modules/QuestionsModule.js'
 import BattleModule from './modules/BattleModule.js'
+import InteractiveBattleModule from './modules/InteractiveBattleModule.js'
 
 const INITIAL_POINTS = 20
 
@@ -28,14 +29,14 @@ async function start() {
     console.info(`Hello, ${name}! You are in the battle!`)
     console.info(`You are facing a ${enemy.name} with speed ${enemy.speed}, strength ${enemy.strength} and defense ${enemy.defense}`)
 
-    const battle = new BattleModule()
-
     if (mode === 'auto') {
       // Auto Battle
-      battle.startAuto(player, enemy)
+      const battle = new BattleModule()
+
+      battle.start(player, enemy)
     } else {
       // Interactive Battle
-      battle.startInteractive(player, enemy)
+      // battle.start(player, enemy)
     }
   } catch (error) {
     console.error(error.message)
