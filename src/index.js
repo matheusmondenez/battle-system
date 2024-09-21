@@ -36,7 +36,10 @@ async function start() {
       battle.start(player, enemy)
     } else {
       // Interactive Battle
-      // battle.start(player, enemy)
+
+      const battle = new InteractiveBattleModule(player, enemy)
+
+      battle.start()
     }
   } catch (error) {
     console.error(error.message)

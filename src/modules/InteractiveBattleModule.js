@@ -17,7 +17,7 @@ class InteractiveBattleModule {
     const [ first, second ] = this.determineOrder()
 
     while (this.checkLife(first) && this.checkLife(second)) {
-      this.runTurn(first, second)
+      await this.runTurn(first, second)
     }
   }
 
@@ -29,12 +29,21 @@ class InteractiveBattleModule {
    */
   determineOrder() {
     if (this.player.speed > this.enemy.speed) {
+      console.log(`${this.player.name} is faster!`)
       return [this.player, this.enemy]
     } else {
+      console.log(`${this.enemy.name} is faster!`)
       return [this.enemy, this.player]
     }
   }
   
+  /**
+   * 
+   * @param {number} turn
+   * 
+   * @returns {number}
+   *
+   */
   countTurn(turn) {
     return turn++
   }
